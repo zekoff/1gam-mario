@@ -7,8 +7,7 @@ requirejs.config({
     },
     paths: {
         phaser: [
-            'https://cdnjs.cloudflare.com/ajax/libs/phaser/2.3.0/custom/phaser-arcade-physics.min',
-            'https://raw.githubusercontent.com/photonstorm/phaser/8233b0a07974a21f6757b7665e61feeeda9b0038/build/phaser.min'
+            'https://cdnjs.cloudflare.com/ajax/libs/phaser/2.2.2/phaser.min'
         ]
     }
 });
