@@ -9,7 +9,7 @@ define(function(require) {
     var enemyGroup;
     var cursors;
     state.create = function() {
-        // set size of game world
+        state.game.stage.backgroundColor = 0xCCCCCC;
         // create tilemap for level
         var map = state.add.tilemap('test_map');
         map.addTilesetImage('test_tiles', 'test_tiles');
@@ -17,6 +17,7 @@ define(function(require) {
         collisionLayer = map.createLayer('collision');
         // fill collision group with collision layer
         map.setCollision(1, true, collisionLayer);
+        // set size of game world
         collisionLayer.resizeWorld();
         // create player sprite
         player = new Player(state.game, 100, 100, 'badman');
