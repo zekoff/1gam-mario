@@ -2,12 +2,13 @@ define(function(require) {
     var Enemy = require('entity/enemy');
     var Player = require('entity/player');
     var Collision = require('callback/collision');
+    var Config = require('config');
+    var Input = require('callback/input');
 
     var state = {};
     var collisionLayer;
     var player;
     var enemyGroup;
-    var cursors;
     state.create = function() {
         state.game.stage.backgroundColor = 0xCCCCCC;
         // create tilemap for level
@@ -24,9 +25,8 @@ define(function(require) {
         state.add.existing(player);
         // fix camera to player
         state.camera.follow(player);
-        // create cursor keys/other input
-        cursors = state.input.keyboard.createCursorKeys();
-        state.physics.arcade.gravity.y = 800;
+        Input.init(state);
+        state.physics.arcade.gravity.y = Config.gravity;
 
         enemyGroup = state.add.group();
         var i;
@@ -34,19 +34,12 @@ define(function(require) {
             Math.random() * state.world.width, 200, 'badman'));
     };
     state.update = function() {
-        // world collision
         state.physics.arcade.collide(player, collisionLayer);
         state.physics.arcade.collide(enemyGroup, collisionLayer);
-        // player vs. enemies collision
-        state.physics.arcade.collide(player, enemyGroup, Collision.playerEnemy);
-        // update enemy AI state
-        // scan for input
-        player.body.velocity.x = 0;
-        if (cursors.left.isDown) player.body.velocity.x = -150;
-        if (cursors.right.isDown) player.body.velocity.x = 150;
-        if (cursors.up.isDown && player.body.onFloor())
-            player.body.velocity.y = -400;
+        state.physics.arcade.overlap(player, enemyGroup, Collision.playerEnemy);
+        // player/pickups collision
         enemyGroup.callAll('updateAi', null, state);
+        Input.handle(player);
     };
     state.render = function() {
         state.time.advancedTiming = true;

@@ -1,12 +1,13 @@
-define(['phaser'], function(Phaser) {
+define(['entity/base_entity'], function(Entity) {
     var Player = function(game, x, y, key, frame) {
-        var p = game.make.sprite.apply(game.make,
-            Array.prototype.slice.call(arguments, 1));
-        game.physics.arcade.enable(p);
-        p.body.collideWorldBounds = true;
-        p.scale.y = 2;
-        return p;
+        Entity.apply(this, arguments);
+        this.scale.y = 1.5;
+        this.speed = 200;
+        this.jumpPower = 600;
     };
-    Player.prototype = Object.create(Phaser.Sprite);
+    Player.prototype = Object.create(Entity.prototype);
+    Player.prototype.constructor = Player;
+    // add damping to L/R movement
+    // move input control/callbacks to this module
     return Player;
 });
