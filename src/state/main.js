@@ -46,6 +46,7 @@ define(function(require) {
         if (cursors.right.isDown) player.body.velocity.x = 150;
         if (cursors.up.isDown && player.body.onFloor())
             player.body.velocity.y = -400;
+        enemyGroup.callAll('updateAi', null, state);
     };
     state.render = function() {
         state.time.advancedTiming = true;

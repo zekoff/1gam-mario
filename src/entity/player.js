@@ -4,6 +4,7 @@ define(['phaser'], function(Phaser) {
             Array.prototype.slice.call(arguments, 1));
         game.physics.arcade.enable(p);
         p.body.collideWorldBounds = true;
+        p.scale.y = 2;
         return p;
     };
     Player.prototype = Object.create(Phaser.Sprite);
