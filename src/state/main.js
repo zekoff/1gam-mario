@@ -27,6 +27,7 @@ define(function(require) {
         state.camera.follow(player);
         Input.init(state);
         state.physics.arcade.gravity.y = Config.gravity;
+        console.log(player.getJumpHeightInTiles());
 
         enemyGroup = state.add.group();
         var i;
