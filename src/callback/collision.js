@@ -5,5 +5,8 @@ define(['phaser'], function(Phaser) {
         else console.log("player died");
         enemy.kill();
     };
+    collision.playerCoin = function(player, coin) {
+        coin.kill();
+    };
     return collision;
 });

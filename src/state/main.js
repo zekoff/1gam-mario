@@ -4,11 +4,13 @@ define(function(require) {
     var Collision = require('callback/collision');
     var Config = require('config');
     var Input = require('callback/input');
+    var Coin = require('entity/coin');
 
     var state = {};
     var collisionLayer;
     var player;
     var enemyGroup;
+    var coinGroup;
     state.create = function() {
         state.game.stage.backgroundColor = 0xCCCCCC;
         // create tilemap for level
@@ -33,10 +35,16 @@ define(function(require) {
         var i;
         for (i = 0; i < 30; i++) enemyGroup.add(new Enemy(state.game,
             Math.random() * state.world.width, 200, 'badman'));
+
+        coinGroup = state.add.group();
+        for (i = 0; i < 50; i++) coinGroup.add(new Coin(state.game,
+            Math.random() * state.world.width, Math.random() *
+            state.world.height, 'coin'));
     };
     state.update = function() {
         state.physics.arcade.collide(player, collisionLayer);
         state.physics.arcade.collide(enemyGroup, collisionLayer);
+        state.physics.arcade.overlap(player, coinGroup, Collision.playerCoin);
         state.physics.arcade.overlap(player, enemyGroup, Collision.playerEnemy);
         // player/pickups collision
         enemyGroup.callAll('updateAi', null, state);

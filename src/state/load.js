@@ -5,6 +5,7 @@ define(['phaser', 'state/main'], function(Phaser, MainState) {
         state.load.tilemap('test_map', 'test_map.json', null, Phaser.Tilemap.TILED_JSON);
         state.load.image('test_tiles', 'test_tiles.png');
         state.load.image('badman', 'badman.png');
+        state.load.spritesheet('coin', 'coin_sheet.png', 24, 24);
     };
     state.update = function() {
         state.game.state.add('main', MainState, true);
