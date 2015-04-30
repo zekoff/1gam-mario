@@ -6,14 +6,10 @@ define(['phaser'], function(Phaser) {
     };
     input.handle = function(player) {
         player.moveInput = 0;
-        if (cursors.left.isDown) {
-            player.body.velocity.x = -player.speed;
+        if (cursors.left.isDown)
             player.moveInput = Phaser.LEFT;
-        }
-        if (cursors.right.isDown) {
-            player.body.velocity.x = player.speed;
+        if (cursors.right.isDown)
             player.moveInput = Phaser.RIGHT;
-        }
         if (cursors.up.isDown && player.body.onFloor())
             player.body.velocity.y = -player.jumpPower;
     };

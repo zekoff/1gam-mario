@@ -13,9 +13,13 @@ define(['entity/base_entity', 'config', 'phaser'], function(Entity, Config, Phas
         return Math.pow(this.jumpPower, 2) / (2 * Config.gravity) / 32;
     };
     Player.prototype.update = function() {
-        if (this.moveInput) {
-            this.body.velocity.x = 0;
-            this.body.velocity.x = this.moveInput == Phaser.LEFT ? -this.speed : this.speed;
+        if (this.moveInput === Phaser.LEFT) {
+            this.body.velocity.x -= time.physicsElapsed * 1200;
+            if (this.body.velocity.x < -this.speed) this.body.velocity.x = -this.speed;
+        }
+        else if (this.moveInput === Phaser.RIGHT) {
+            this.body.velocity.x += time.physicsElapsed * 1200;
+            if (this.body.velocity.x > this.speed) this.body.velocity.x = this.speed;
         }
         else {
             var dampingRate = time.physicsElapsed * 6;
