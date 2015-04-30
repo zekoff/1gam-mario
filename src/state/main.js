@@ -20,9 +20,8 @@ define(function(require) {
         collisionLayer.resizeWorld();
         state.add.existing(player = new Player(state.game, 100, 100, 'badman'));
         state.camera.follow(player);
-        Input.init(state);
+        Input.init(state, player);
         state.physics.arcade.gravity.y = Config.gravity;
-        console.log(player.getJumpHeightInTiles());
         enemyGroup = state.add.group();
         map.createFromObjects('enemy', 3, 'badman', null, true, false, enemyGroup, Enemy);
         coinGroup = state.add.group();

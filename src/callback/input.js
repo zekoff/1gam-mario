@@ -1,8 +1,14 @@
 define(['phaser'], function(Phaser) {
     var input = {};
     var cursors;
-    input.init = function(state) {
+    input.init = function(state, player) {
         cursors = state.input.keyboard.createCursorKeys();
+        cursors.up.onDown.add(function() {
+            player.jumpPressed();
+        });
+        cursors.up.onUp.add(function(){
+            player.jumpReleased();
+        });
     };
     input.handle = function(player) {
         player.moveInput = 0;
@@ -10,8 +16,6 @@ define(['phaser'], function(Phaser) {
             player.moveInput = Phaser.LEFT;
         if (cursors.right.isDown)
             player.moveInput = Phaser.RIGHT;
-        if (cursors.up.isDown && player.body.onFloor())
-            player.body.velocity.y = -player.jumpPower;
     };
     return input;
 });
