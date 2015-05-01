@@ -3,7 +3,7 @@ define(['entity/base_entity', 'config', 'phaser'], function(Entity, Config, Phas
     var Player = function(game, x, y, key, frame) {
         Entity.apply(this, arguments);
         this.scale.y = 1.5;
-        this.speed = 200;
+        this.speed = 220;
         this.jumpPower = 400;
         this.jumping = false;
         this.jumpTimer = 0;

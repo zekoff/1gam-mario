@@ -13,19 +13,23 @@ define(function(require) {
     var coinGroup;
     state.create = function() {
         state.game.stage.backgroundColor = 0xCCCCCC;
-        var map = state.add.tilemap('test_map');
-        map.addTilesetImage('test_tiles', 'test_tiles');
+        var map = state.add.tilemap('level1');
+        // map.addTilesetImage('test_tiles', 'test_tiles');
+        map.addTilesetImage('spritesheet_ground_small', 'spritesheet_ground_small');
+        map.addTilesetImage('spritesheet_items_small', 'spritesheet_items_small');
+        map.addTilesetImage('spritesheet_tiles_small', 'spritesheet_tiles_small');
         collisionLayer = map.createLayer('collision');
-        map.setCollision(1, true, collisionLayer);
+        map.setCollisionByExclusion([], true, collisionLayer);
         collisionLayer.resizeWorld();
+        map.createLayer('clutter');
         state.add.existing(player = new Player(state.game, 100, 100, 'badman'));
         state.camera.follow(player);
         Input.init(state, player);
         state.physics.arcade.gravity.y = Config.gravity;
         enemyGroup = state.add.group();
-        map.createFromObjects('enemy', 3, 'badman', null, true, false, enemyGroup, Enemy);
+        map.createFromObjects('enemy', 249, 'badman', null, true, false, enemyGroup, Enemy);
         coinGroup = state.add.group();
-        map.createFromObjects('coin', 4, 'coin', null, true, false, coinGroup, Coin);
+        map.createFromObjects('coin', 158, 'coin', null, true, false, coinGroup, Coin);
     };
     state.update = function() {
         state.physics.arcade.collide(player, collisionLayer);
