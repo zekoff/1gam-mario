@@ -33,6 +33,7 @@ define(['entity/base_entity', 'config', 'phaser'], function(Entity, Config, Phas
         }
         if (this.moveInput === Phaser.RIGHT) this.scale.x = 1;
         if (this.moveInput === Phaser.LEFT) this.scale.x = -1;
+        if (this.body.blocked.up) this.jumping = false;
         if (this.jumping && this.jumpTimer < 0.2) {
             this.jumpTimer += time.physicsElapsed;
             this.body.velocity.y = -this.jumpPower;
