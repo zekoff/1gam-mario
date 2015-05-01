@@ -1,12 +1,15 @@
 define(['entity/base_entity', 'config', 'phaser'], function(Entity, Config, Phaser) {
     var time;
+    var SCALE = 0.25;
     var Player = function(game, x, y, key, frame) {
         Entity.apply(this, arguments);
-        this.scale.y = 1.5;
+        this.scale.set(SCALE);
         this.speed = 220;
         this.jumpPower = 400;
         this.jumping = false;
         this.jumpTimer = 0;
+        this.animations.add('player');
+        this.animations.play('player', 5, true);
         time = game.time;
     };
     Player.prototype = Object.create(Entity.prototype);
@@ -16,11 +19,13 @@ define(['entity/base_entity', 'config', 'phaser'], function(Entity, Config, Phas
     };
     Player.prototype.update = function() {
         if (this.moveInput === Phaser.LEFT) {
+            this.animations.play('player', 5, true);
             this.body.velocity.x -= time.physicsElapsed * 1200;
             if (this.body.velocity.x < -this.speed)
                 this.body.velocity.x = -this.speed;
         }
         else if (this.moveInput === Phaser.RIGHT) {
+            this.animations.play('player', 5, true);
             this.body.velocity.x += time.physicsElapsed * 1200;
             if (this.body.velocity.x > this.speed)
                 this.body.velocity.x = this.speed;
@@ -28,11 +33,13 @@ define(['entity/base_entity', 'config', 'phaser'], function(Entity, Config, Phas
         else {
             var dampingRate = time.physicsElapsed * 6;
             this.body.velocity.x *= 1 - dampingRate;
-            if (Math.abs(this.body.velocity.x) < this.speed * 0.1)
+            if (Math.abs(this.body.velocity.x) < this.speed * 0.1) {
                 this.body.velocity.x = 0;
+                this.animations.stop('player');
+            }
         }
-        if (this.moveInput === Phaser.RIGHT) this.scale.x = 1;
-        if (this.moveInput === Phaser.LEFT) this.scale.x = -1;
+        if (this.moveInput === Phaser.RIGHT) this.scale.x = SCALE;
+        if (this.moveInput === Phaser.LEFT) this.scale.x = -SCALE;
         if (this.body.blocked.up) this.jumping = false;
         if (this.jumping && this.jumpTimer < 0.2) {
             this.jumpTimer += time.physicsElapsed;
@@ -48,6 +55,9 @@ define(['entity/base_entity', 'config', 'phaser'], function(Entity, Config, Phas
     };
     Player.prototype.jumpReleased = function() {
         this.jumping = false;
+    };
+    Player.prototype.bounce = function() {
+        this.body.velocity.y = -this.jumpPower / 2;
     };
     return Player;
 });

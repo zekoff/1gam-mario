@@ -258,6 +258,7 @@
  "orientation":"orthogonal",
  "properties":
     {
+     "backgroundColor":"#CCCCFF",
      "myMapProperty":"here's a value"
     },
  "renderorder":"right-down",
