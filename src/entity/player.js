@@ -59,7 +59,7 @@ define(['entity/base_entity', 'config', 'phaser'], function(Entity, Config, Phas
         this.jumping = false;
     };
     Player.prototype.bounce = function() {
-        this.body.velocity.y = -this.jumpPower / 2;
+        this.body.velocity.y = -this.jumpPower;
     };
     Player.prototype.hit = function() {
         this.hp--;

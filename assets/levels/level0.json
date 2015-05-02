@@ -387,6 +387,7 @@
  "properties":
     {
      "backgroundColor":"#CCCCFF",
+     "music":"grass_music",
      "name":"Test Level"
     },
  "renderorder":"right-down",

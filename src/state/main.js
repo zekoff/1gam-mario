@@ -21,6 +21,7 @@ define(function(require) {
         state.physics.arcade.overlap(level.player, level.enemyGroup,
             Collision.playerEnemy);
         state.physics.arcade.overlap(level.player, level.exitGroup, function() {
+            level.music.stop();
             state.game.state.remove('main');
             Data.currentLevel++;
             state.game.state.start('level_intro');

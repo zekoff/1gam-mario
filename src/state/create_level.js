@@ -41,6 +41,9 @@ define(function(require) {
         levelData.exitGroup = state.add.group();
         map.createFromObjects('exit', 221, 'exit', null, true, false,
             levelData.exitGroup, Exit);
+        levelData.music = state.add.audio(map.properties.music);
+        levelData.music.volume = 0.3;
+        levelData.music.play();
         return levelData;
     };
     return create_level;

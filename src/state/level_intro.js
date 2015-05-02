@@ -4,14 +4,16 @@ define(function(require) {
 
     var state = {};
     state.create = function() {
-        var name = state.make.tilemap('level' + Data.currentLevel).properties.name;
+        var map = state.make.tilemap('level' + Data.currentLevel);
+        var name = map.properties.name;
+        state.game.stage.backgroundColor = '#000';
         var text = state.add.text(400, 300, "Now Entering:\n" + name, {
             fill: 'white',
             align: 'center'
         });
         text.anchor.set(0.5);
         var timer = state.time.create();
-        timer.add(100, function() {
+        timer.add(3000, function() {
             state.game.state.add('main', MainState, true);
         });
         timer.start();
