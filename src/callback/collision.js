@@ -8,12 +8,12 @@ define(['phaser'], function(Phaser) {
         if (player.body.touching.down) {
             player.bounce();
             state.add.audio('stomp_sound').play();
+            enemy.kill();
         }
         else {
             player.hit();
             state.add.audio('stomp_sound').play();
         }
-        enemy.kill();
     };
     collision.playerCoin = function(player, coin) {
         coin.kill();
