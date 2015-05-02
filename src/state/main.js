@@ -2,22 +2,15 @@ define(function(require) {
     var Collision = require('callback/collision');
     var Input = require('callback/input');
     var createLevel = require('state/create_level');
+    var createHud = require('state/create_hud');
 
     var state = {};
     var level;
+    var hud;
     state.create = function() {
         level = createLevel(state, 1);
+        hud = createHud(state);
         Collision.init(state);
-        
-        var hudGroup = state.add.group();
-        hudGroup.fixedToCamera = true;
-        var lives = [];
-        var i;
-        for (i = 0; i < 3; i++) {
-            var lifeIcon = state.make.image(i * 50 + 20, 20, 'badman');
-            lives.push(lifeIcon);
-            hudGroup.add(lifeIcon);
-        }
     };
     state.update = function() {
         state.physics.arcade.collide(level.player, level.collisionLayer);
@@ -26,6 +19,12 @@ define(function(require) {
         state.physics.arcade.overlap(level.player, level.enemyGroup, Collision.playerEnemy);
         level.enemyGroup.callAll('updateAi', null, state);
         Input.handle(level.player);
+        hud.update(level.player);
+
+        if (level.player.hp < 1) {
+            state.camera.reset();
+            state.game.state.restart();
+        }
     };
     state.render = function() {
         state.time.advancedTiming = true;

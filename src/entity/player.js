@@ -10,6 +10,8 @@ define(['entity/base_entity', 'config', 'phaser'], function(Entity, Config, Phas
         this.jumpTimer = 0;
         this.animations.add('player');
         this.animations.play('player', 5, true);
+        this.hp = 3;
+        this.coins = 0;
         time = game.time;
     };
     Player.prototype = Object.create(Entity.prototype);
@@ -60,11 +62,14 @@ define(['entity/base_entity', 'config', 'phaser'], function(Entity, Config, Phas
         this.body.velocity.y = -this.jumpPower / 2;
     };
     Player.prototype.hit = function() {
-        var bumpDirection;
+        this.hp--;
+        var bumpDirection = 0;
         if (this.body.touching.left) bumpDirection = 1;
         if (this.body.touching.right) bumpDirection = -1;
-        this.body.velocity.x = 200 * bumpDirection;
-        this.body.velocity.y = -200;
+        var verticalDirection = 1;
+        if (this.body.touching.up) verticalDirection = -1;
+        this.body.velocity.x = 400 * bumpDirection;
+        this.body.velocity.y = -200 * verticalDirection;
     };
     return Player;
 });

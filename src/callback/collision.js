@@ -6,7 +6,6 @@ define(['phaser'], function(Phaser) {
     };
     collision.playerEnemy = function(player, enemy) {
         if (player.body.touching.down) {
-            console.log("killed enemy");
             player.bounce();
             state.add.audio('stomp_sound').play();
         }
@@ -18,6 +17,7 @@ define(['phaser'], function(Phaser) {
     };
     collision.playerCoin = function(player, coin) {
         coin.kill();
+        player.coins++;
         state.add.audio('coin_sound').play();
     };
     return collision;
