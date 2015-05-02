@@ -5,8 +5,9 @@ define(function(require) {
     var state = {};
     state.create = function() {
         var name = state.make.tilemap('level' + Data.currentLevel).properties.name;
-        var text = state.add.text(400, 300, "Now Entering: " + name, {
-            fill: 'white'
+        var text = state.add.text(400, 300, "Now Entering:\n" + name, {
+            fill: 'white',
+            align: 'center'
         });
         text.anchor.set(0.5);
         var timer = state.time.create();
