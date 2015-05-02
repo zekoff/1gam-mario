@@ -27,7 +27,7 @@ define(function(require) {
         state.physics.arcade.overlap(level.player, level.exitGroup, function() {
             level.music.stop();
             state.game.state.remove('main');
-            if (Data.currentLevel++ > Config.numLevels)
+            if (++Data.currentLevel > Config.numLevels)
                 state.game.state.add('final', WinState, true);
             else
                 state.game.state.start('level_intro');

@@ -1,4 +1,4 @@
-define([], function() {
+define(['data'], function(Data) {
     return function(state) {
         var hudData = {};
         var hudGroup = state.add.group();
@@ -20,7 +20,7 @@ define([], function() {
         });
         hudGroup.add(coinText);
         hudData.update = function(player) {
-            coinText.setText(player.coins);
+            coinText.setText(Data.coins);
             lives.forEach(function(e) {
                 e.visible = false;
             });

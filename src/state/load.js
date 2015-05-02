@@ -16,7 +16,7 @@ define(['phaser', 'state/title', 'config'], function(Phaser, Title, Config) {
         state.load.tilemap('test_map', 'test_map.json', null, Phaser.Tilemap.TILED_JSON);
         var l;
         for (l = 0; l <= Config.numLevels; l++)
-            state.load.tilemap('level' + l, 'levels/level' + l + '.json', null, Phaser.Tilemap.TILED_JSON);
+            state.load.tilemap('level' + l, 'levels/' + l + '.json', null, Phaser.Tilemap.TILED_JSON);
         state.load.image('test_tiles', 'test_tiles.png');
         state.load.image('spritesheet_ground_small', 'image/spritesheet_ground_small.png');
         state.load.image('spritesheet_items_small', 'image/spritesheet_items_small.png');
@@ -39,8 +39,8 @@ define(['phaser', 'state/title', 'config'], function(Phaser, Title, Config) {
         state.load.audio('hit_sound', 'sound/hit_sound.ogg');
         state.load.audio('lose_sound', 'sound/lose_sound.ogg');
         state.load.audio('grass_music', 'music/grass.ogg');
-        state.load.audio('ice_music', 'music/ice.ogg');
-        state.load.audio('castle_music', 'music/castle.ogg');
+        // state.load.audio('ice_music', 'music/ice.ogg');
+        // state.load.audio('castle_music', 'music/castle.ogg');
         state.load.start();
     };
     state.update = function() {

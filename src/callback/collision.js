@@ -1,4 +1,4 @@
-define(['phaser'], function(Phaser) {
+define(['phaser', 'data'], function(Phaser, Data) {
     var collision = {};
     var state;
     var lastTimeHit = 0; // ms
@@ -19,7 +19,7 @@ define(['phaser'], function(Phaser) {
     };
     collision.playerCoin = function(player, coin) {
         coin.kill();
-        player.coins++;
+        Data.coins++;
         state.add.audio('coin_sound').play();
     };
     collision.playerLava = function(player, lava) {

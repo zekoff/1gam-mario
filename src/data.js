@@ -1,3 +1,4 @@
 define({
-    currentLevel: 0
+    currentLevel: 0,
+    coins: 0
 });
