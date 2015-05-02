@@ -1,4 +1,4 @@
-define(['phaser', 'state/main'], function(Phaser, MainState) {
+define(['phaser', 'state/level_intro'], function(Phaser, LevelIntro) {
     var state = {};
     state.preload = function() {
         state.load.baseURL = './assets/';
@@ -16,7 +16,7 @@ define(['phaser', 'state/main'], function(Phaser, MainState) {
         state.load.audio('stomp_sound', 'stomp_sound.ogg');
     };
     state.update = function() {
-        state.game.state.add('main', MainState, true);
+        state.game.state.add('level_intro', LevelIntro, true);
     };
     return state;
 });

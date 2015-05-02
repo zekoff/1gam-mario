@@ -1,6 +1,7 @@
 define(function(require) {
     var Collision = require('callback/collision');
     var Input = require('callback/input');
+    var Data = require('data');
     var createLevel = require('state/create_level');
     var createHud = require('state/create_hud');
 
@@ -8,7 +9,7 @@ define(function(require) {
     var level;
     var hud;
     state.create = function() {
-        level = createLevel(state, 1);
+        level = createLevel(state, Data.currentLevel);
         hud = createHud(state);
         Collision.init(state);
     };

@@ -1,4 +1,10 @@
-define(['ai/fsm', 'entity/base_entity', 'ai/patrol', 'ai/wander', 'ai/fly'], function(FSM, Entity, Patrol, Wander, Fly) {
+define(function(require) {
+    var FSM = require('ai/fsm');
+    var Entity = require('entity/base_entity');
+    var Patrol = require('ai/patrol');
+    var Wander = require('ai/wander');
+    var Fly = require('ai/fly');
+
     var PATROL_LENGTH = 2;
     var SCALE = 0.4;
     var Enemy = function(game, x, y, key, frame) {
@@ -13,7 +19,6 @@ define(['ai/fsm', 'entity/base_entity', 'ai/patrol', 'ai/wander', 'ai/fly'], fun
     Enemy.prototype.update = function() {
         if (this.body.velocity.x < 0) this.scale.x = SCALE;
         if (this.body.velocity.x > 0) this.scale.x = -SCALE;
-
     };
     Enemy.prototype.updateAi = function(state) {
         this.ai.activeState().update(this, state);
