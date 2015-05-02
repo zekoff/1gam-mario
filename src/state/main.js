@@ -16,15 +16,27 @@ define(function(require) {
     state.update = function() {
         state.physics.arcade.collide(level.player, level.collisionLayer);
         state.physics.arcade.collide(level.enemyGroup, level.collisionLayer);
-        state.physics.arcade.overlap(level.player, level.coinGroup, Collision.playerCoin);
-        state.physics.arcade.overlap(level.player, level.enemyGroup, Collision.playerEnemy);
+        state.physics.arcade.overlap(level.player, level.coinGroup,
+            Collision.playerCoin);
+        state.physics.arcade.overlap(level.player, level.enemyGroup,
+            Collision.playerEnemy);
+        state.physics.arcade.overlap(level.player, level.exitGroup, function() {
+            state.game.state.remove('main');
+            Data.currentLevel++;
+            state.game.state.start('level_intro');
+        });
         level.enemyGroup.callAll('updateAi', null, state);
         Input.handle(level.player);
         hud.update(level.player);
 
-        if (level.player.hp < 1) {
-            state.camera.reset();
-            state.game.state.restart();
+        if (level.player.hp < 1 && level.player.alive) {
+            level.player.kill();
+            var loseSound = state.add.audio('lose_sound');
+            loseSound.play();
+            loseSound.onStop.add(function() {
+                state.camera.reset();
+                state.game.state.restart();
+            });
         }
     };
     state.render = function() {

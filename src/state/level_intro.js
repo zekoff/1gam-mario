@@ -11,7 +11,7 @@ define(function(require) {
         });
         text.anchor.set(0.5);
         var timer = state.time.create();
-        timer.add(1000, function() {
+        timer.add(100, function() {
             state.game.state.add('main', MainState, true);
         });
         timer.start();

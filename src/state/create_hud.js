@@ -6,7 +6,8 @@ define([], function() {
         var lives = [];
         var i;
         for (i = 0; i < 3; i++) {
-            var lifeIcon = state.make.image(i * 50 + 20, 20, 'badman');
+            var lifeIcon = state.make.image(i * 40 + 20, 16, 'heart');
+            lifeIcon.scale.set(0.25);
             lives.push(lifeIcon);
             hudGroup.add(lifeIcon);
         }

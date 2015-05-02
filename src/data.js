@@ -1,3 +1,3 @@
 define({
-    currentLevel: 1
+    currentLevel: 0
 });

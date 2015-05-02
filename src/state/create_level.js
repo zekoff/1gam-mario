@@ -4,6 +4,7 @@ define(function(require) {
     var Input = require('callback/input');
     var Config = require('config');
     var Player = require('entity/player');
+    var Exit = require('entity/exit');
 
     var create_level = function(state, number) {
         var levelData = {};
@@ -26,11 +27,20 @@ define(function(require) {
         Input.init(state, levelData.player);
         state.physics.arcade.gravity.y = Config.gravity;
         levelData.enemyGroup = state.add.group();
-        map.createFromObjects('enemy', 249, 'slime', null, true, false,
+        map.createFromObjects('slime', 249, 'slime', null, true, false,
+            levelData.enemyGroup, Enemy);
+        map.createFromObjects('bee', 249, 'bee', null, true, false,
+            levelData.enemyGroup, Enemy);
+        map.createFromObjects('frog', 249, 'frog', null, true, false,
+            levelData.enemyGroup, Enemy);
+        map.createFromObjects('barnacle', 249, 'barnacle', null, true, false,
             levelData.enemyGroup, Enemy);
         levelData.coinGroup = state.add.group();
         map.createFromObjects('coin', 158, 'coin', null, true, false,
             levelData.coinGroup, Coin);
+        levelData.exitGroup = state.add.group();
+        map.createFromObjects('exit', 221, 'exit', null, true, false,
+            levelData.exitGroup, Exit);
         return levelData;
     };
     return create_level;

@@ -1,8 +1,8 @@
 define(['ai/hop'], function(Hop) {
     var PATROL_LENGTH = 2;
     var Patrol = function(ai) {
-        this.patrolCount = Math.random() * PATROL_LENGTH;
-        this.patrolDirection = Math.random() > 0.5 ? 1 : -1;
+        if (!this.patrolCount) this.patrolCount = 0;
+        if (!this.patrolDirection) this.patrolDirection = -1;
         this.ai = ai;
     };
     Patrol.prototype.update = function(entity, state) {

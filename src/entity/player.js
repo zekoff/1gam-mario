@@ -63,13 +63,14 @@ define(['entity/base_entity', 'config', 'phaser'], function(Entity, Config, Phas
     };
     Player.prototype.hit = function() {
         this.hp--;
-        var bumpDirection = 0;
+        this.jumping = false;
+        var bumpDirection = Math.random() > 0.5 ? 1 : -1;
         if (this.body.touching.left) bumpDirection = 1;
         if (this.body.touching.right) bumpDirection = -1;
         var verticalDirection = 1;
         if (this.body.touching.up) verticalDirection = -1;
-        this.body.velocity.x = 400 * bumpDirection;
-        this.body.velocity.y = -200 * verticalDirection;
+        this.body.velocity.x = 600 * bumpDirection;
+        this.body.velocity.y = -300 * verticalDirection;
     };
     return Player;
 });
