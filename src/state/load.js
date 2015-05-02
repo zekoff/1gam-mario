@@ -16,7 +16,6 @@ define(['phaser', 'state/main'], function(Phaser, MainState) {
         state.load.audio('stomp_sound', 'stomp_sound.ogg');
     };
     state.update = function() {
-        // create all levels
         state.game.state.add('main', MainState, true);
     };
     return state;

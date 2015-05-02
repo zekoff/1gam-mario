@@ -10,7 +10,10 @@ define(['phaser'], function(Phaser) {
             player.bounce();
             state.add.audio('stomp_sound').play();
         }
-        else console.log("player died");
+        else {
+            player.hit();
+            state.add.audio('stomp_sound').play();
+        }
         enemy.kill();
     };
     collision.playerCoin = function(player, coin) {

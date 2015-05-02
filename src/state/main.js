@@ -8,6 +8,16 @@ define(function(require) {
     state.create = function() {
         level = createLevel(state, 1);
         Collision.init(state);
+        
+        var hudGroup = state.add.group();
+        hudGroup.fixedToCamera = true;
+        var lives = [];
+        var i;
+        for (i = 0; i < 3; i++) {
+            var lifeIcon = state.make.image(i * 50 + 20, 20, 'badman');
+            lives.push(lifeIcon);
+            hudGroup.add(lifeIcon);
+        }
     };
     state.update = function() {
         state.physics.arcade.collide(level.player, level.collisionLayer);

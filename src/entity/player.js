@@ -59,5 +59,12 @@ define(['entity/base_entity', 'config', 'phaser'], function(Entity, Config, Phas
     Player.prototype.bounce = function() {
         this.body.velocity.y = -this.jumpPower / 2;
     };
+    Player.prototype.hit = function() {
+        var bumpDirection;
+        if (this.body.touching.left) bumpDirection = 1;
+        if (this.body.touching.right) bumpDirection = -1;
+        this.body.velocity.x = 200 * bumpDirection;
+        this.body.velocity.y = -200;
+    };
     return Player;
 });
