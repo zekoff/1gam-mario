@@ -5,6 +5,7 @@ define(function(require) {
     var Config = require('config');
     var Player = require('entity/player');
     var Exit = require('entity/exit');
+    var Lava = require('entity/lava');
 
     var create_level = function(state, number) {
         var levelData = {};
@@ -41,6 +42,9 @@ define(function(require) {
         levelData.exitGroup = state.add.group();
         map.createFromObjects('exit', 221, 'exit', null, true, false,
             levelData.exitGroup, Exit);
+        levelData.lavaGroup = state.add.group();
+        map.createFromObjects('lava', 172, 'lava', null, true, false,
+            levelData.lavaGroup, Lava);
         levelData.music = state.add.audio(map.properties.music);
         levelData.music.volume = 0.3;
         levelData.music.play();

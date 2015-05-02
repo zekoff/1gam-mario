@@ -22,5 +22,8 @@ define(['phaser'], function(Phaser) {
         player.coins++;
         state.add.audio('coin_sound').play();
     };
+    collision.playerLava = function(player, lava) {
+        player.hp = 0;
+    };
     return collision;
 });
