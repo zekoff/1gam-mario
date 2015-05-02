@@ -4,6 +4,8 @@ define(function(require) {
     var Data = require('data');
     var createLevel = require('state/create_level');
     var createHud = require('state/create_hud');
+    var Config = require('config');
+    var WinState = require('state/win');
 
     var state = {};
     var level;
@@ -25,14 +27,17 @@ define(function(require) {
         state.physics.arcade.overlap(level.player, level.exitGroup, function() {
             level.music.stop();
             state.game.state.remove('main');
-            Data.currentLevel++;
-            state.game.state.start('level_intro');
+            if (Data.currentLevel++ > Config.numLevels)
+                state.game.state.add('final', WinState, true);
+            else
+                state.game.state.start('level_intro');
         });
         level.enemyGroup.callAll('updateAi', null, state);
         Input.handle(level.player);
         hud.update(level.player);
 
         if (level.player.hp < 1 && level.player.alive) {
+            level.music.stop();
             level.player.kill();
             var loseSound = state.add.audio('lose_sound');
             loseSound.play();
