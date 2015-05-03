@@ -48,9 +48,9 @@ define(function(require) {
             });
         }
     };
-    state.render = function() {
-        state.time.advancedTiming = true;
-        state.game.debug.text("FPS: " + state.time.fps, 20, 20, "#FFF");
-    };
+    // state.render = function() {
+    //     state.time.advancedTiming = true;
+    //     state.game.debug.text("FPS: " + state.time.fps, 20, 20, "#FFF");
+    // };
     return state;
 });
