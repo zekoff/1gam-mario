@@ -39,8 +39,8 @@ define(['phaser', 'state/title', 'config'], function(Phaser, Title, Config) {
         state.load.audio('hit_sound', 'sound/hit_sound.ogg');
         state.load.audio('lose_sound', 'sound/lose_sound.ogg');
         state.load.audio('grass_music', 'music/grass.ogg');
-        // state.load.audio('ice_music', 'music/ice.ogg');
-        // state.load.audio('castle_music', 'music/castle.ogg');
+        state.load.audio('ice_music', 'music/ice.ogg');
+        state.load.audio('castle_music', 'music/castle.ogg');
         state.load.start();
     };
     state.update = function() {

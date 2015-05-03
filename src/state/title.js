@@ -1,6 +1,7 @@
 define(function(require) {
     var LevelIntro = require('state/level_intro');
     var Phaser = require('phaser');
+    var Data = require('data');
 
     var state = {};
     state.create = function() {
@@ -15,6 +16,7 @@ define(function(require) {
             text.anchor.set(0.5);
             state.input.keyboard.addKey(Phaser.Keyboard.ENTER).onDown
                 .addOnce(function() {
+                    Data.startTime = state.time.now;
                     state.game.state.add('level_intro', LevelIntro, true);
                 });
         });

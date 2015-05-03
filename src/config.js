@@ -1,4 +1,4 @@
 define({
     gravity: 1200,
-    numLevels: 1
+    numLevels: 6
 });

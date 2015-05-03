@@ -48,6 +48,7 @@ define(function(require) {
         levelData.music = state.add.audio(map.properties.music);
         levelData.music.volume = 0.3;
         levelData.music.play();
+        levelData.player.y = state.world.height - (3 * 32);
         return levelData;
     };
     return create_level;

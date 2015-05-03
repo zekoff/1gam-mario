@@ -1,4 +1,6 @@
 define({
-    currentLevel: 0,
-    coins: 0
+    currentLevel: 6,
+    coins: 0,
+    died: 0,
+    startTime: 0
 });

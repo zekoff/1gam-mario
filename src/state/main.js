@@ -22,7 +22,7 @@ define(function(require) {
             Collision.playerCoin);
         state.physics.arcade.overlap(level.player, level.enemyGroup,
             Collision.playerEnemy);
-        state.physics.arcade.collide(level.player, level.lavaGroup,
+        state.physics.arcade.overlap(level.player, level.lavaGroup,
             Collision.playerLava);
         state.physics.arcade.overlap(level.player, level.exitGroup, function() {
             level.music.stop();
@@ -39,6 +39,7 @@ define(function(require) {
         if (level.player.hp < 1 && level.player.alive) {
             level.music.stop();
             level.player.kill();
+            Data.died++;
             var loseSound = state.add.audio('lose_sound');
             loseSound.play();
             loseSound.onStop.add(function() {

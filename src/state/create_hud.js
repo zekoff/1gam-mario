@@ -16,7 +16,7 @@ define(['data'], function(Data) {
         var coinText;
         coinText = state.make.text(720, 20, "", {
             font: '18pt sans',
-            fill: 'white'
+            fill: 'black'
         });
         hudGroup.add(coinText);
         hudData.update = function(player) {
